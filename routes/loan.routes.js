@@ -1,6 +1,11 @@
-const express = require("express");
+// File: routes/loan.routes.js
+const express = require('express');
 const router = express.Router();
-
+const { 
+    adminManagerAuthenticate, 
+    adminauthenticate, 
+    userauthenticate 
+} = require('../middlewares/auth.middleware');
 const {
     getAllLoans,
     getLoanDetails,
@@ -10,24 +15,15 @@ const {
     approveLoan,
     receiveDownPayment,
     disburseLoan
-} = require("../controllers/loan.controller");
+} = require('../controllers/loan.controller');
 
-const {
-    adminManagerAuthenticate,
-    adminauthenticate,
-    userauthenticate
-} = require("../middlewares/auth.middleware");
-
-// ADMIN / MANAGER ROUTES
 router.get("/", adminManagerAuthenticate, getAllLoans);
-router.get("/:id", adminManagerAuthenticate, getLoanDetails);
-router.post("/", adminManagerAuthenticate, addLoan);
-router.put("/approve/:id", adminManagerAuthenticate, approveLoan);
-router.put("/downpayment/:id", adminManagerAuthenticate, receiveDownPayment);
-router.put("/disburse/:id", adminManagerAuthenticate, disburseLoan);
-
-// USER ROUTES
-router.get("/user/details/get", userauthenticate, getUserLoanDetails);
-router.put("/user/payemi/:loanId/:emiId", userauthenticate, payEmi);
+router.get("/loandetails/:id", adminManagerAuthenticate, getLoanDetails);
+router.get("/userloandetails", userauthenticate, getUserLoanDetails);
+router.put('/payemi/:loanId/:emiId', userauthenticate, payEmi);
+router.post("/addloan", adminManagerAuthenticate, addLoan);
+router.put("/approveloan/:id", adminauthenticate, approveLoan);
+router.put("/downpaymentReceived/:id", adminManagerAuthenticate, receiveDownPayment);
+router.put("/disburseloan/:id", adminauthenticate, disburseLoan);
 
 module.exports = router;

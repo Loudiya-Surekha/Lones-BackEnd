@@ -1,21 +1,15 @@
-const express = require("express");
+// File: routes/admin.routes.js
+const express = require('express');
 const router = express.Router();
-
-const { adminauthenticate } = require("../middlewares/auth.middleware");
-
+const { adminauthenticate } = require('../middlewares/auth.middleware');
 const {
     getManagers,
     approveManager,
     removeManager
-} = require("../controllers/admin.controller");
+} = require('../controllers/admin.controller');
 
-// FETCH ALL USERS WHO CAN BE MANAGERS
-router.get("/addmanager", adminauthenticate, getManagers);
-
-// MAKE A USER MANAGER
+router.get('/addmanager', adminauthenticate, getManagers);
 router.put("/approvemanager/:id", adminauthenticate, approveManager);
-
-// REMOVE MANAGER ROLE
 router.put("/removemanager/:id", adminauthenticate, removeManager);
 
 module.exports = router;
