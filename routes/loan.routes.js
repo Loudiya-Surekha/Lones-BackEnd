@@ -26,4 +26,5 @@ router.put("/approveloan/:id", adminauthenticate, approveLoan);
 router.put("/downpaymentReceived/:id", adminManagerAuthenticate, receiveDownPayment);
 router.put("/disburseloan/:id", adminauthenticate, disburseLoan);
 
+
 module.exports = router;

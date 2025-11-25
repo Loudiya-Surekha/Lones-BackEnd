@@ -17,7 +17,9 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/interest", interestRoutes);
+app.use("/api/interest", interestRoutes);
 app.use("/api/loan", loanRoutes);
+
 
 // MONGO CONNECTION 
 mongoose.connect(MONGO_URI)

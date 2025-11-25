@@ -4,7 +4,7 @@ const Intrestrate = require("../models/intrestrate.model");
 const getInterestRates = async (req, res) => {
     try {
         var intrestrates = await Intrestrate.find();
-        console.log("iiii", intrestrates);
+        // console.log("iiii", intrestrates);
         if (intrestrates.length > 0) {
             var data = {
                 id: intrestrates[0]._id,
